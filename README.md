@@ -1,4 +1,4 @@
-# Anwar Hussain Portfolio
+# Hashir Qureshi Portfolio
 
 A modern, responsive portfolio website built with React, Three.js, and Tailwind CSS.
 
