@@ -27,8 +27,8 @@ Check out my [portfolio][https://hashir-portfolio.netlify.app/].
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/hashir04/hashir-Hussain-Portfolio.git
-cd Anwar-Hussain-Portfolio
+git clone https://github.com/hashhirr/Portfolio_nextJs.git
+cd Portfolio_nextJs
 ```
 
 2. Install dependencies:
