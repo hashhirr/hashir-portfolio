@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && git checkout --orphan gh-pages && git rm -rf . && cp -R dist/* . && touch .nojekyll && git add -A && git commit -m \"Deploy\" && git push origin gh-pages --force && git checkout main"
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",

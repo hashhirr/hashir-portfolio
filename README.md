@@ -3,7 +3,7 @@
 A modern, responsive portfolio website built with React, Three.js, and Tailwind CSS.
 
 
-Check out my [portfolio][https://hashir-portfolio.netlify.app/].
+Check out my [portfolio][https://hashhirr.github.io/hashir-portfolio/].
 
 ## 🚀 Features
 
@@ -27,7 +27,7 @@ Check out my [portfolio][https://hashir-portfolio.netlify.app/].
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/hashhirr/Portfolio_nextJs.git
+git clone https://github.com/hashhirr/hashir-portfolio.git
 cd Portfolio_nextJs
 ```
 
@@ -54,7 +54,11 @@ npm run dev
 ```bash
 npm run build
 ```
+then 
 
+```bash
+npm run deploy
+```
 2. Deploy to GitHub Pages or any static hosting service.
 
 ### Vercel/Netlify
