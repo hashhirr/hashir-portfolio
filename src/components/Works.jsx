@@ -23,6 +23,21 @@ const ProjectCard = ({
 }) => {
   const cardRef = useRef(null);
   const [isLoading, setIsLoading] = React.useState(true);
+  const hasLink = Boolean(source_code_link);
+
+  const handleCardClick = () => {
+    if (hasLink) {
+      window.open(source_code_link, "_blank");
+    }
+  };
+
+  const handleCardKeyDown = (event) => {
+    if (!hasLink) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      window.open(source_code_link, "_blank");
+    }
+  };
 
   useEffect(() => {
     const el = cardRef.current;
@@ -90,6 +105,11 @@ const ProjectCard = ({
       variants={staggerItem(index * 0.1)}
       whileHover={hoverScale}
       whileTap={{ scale: 0.95 }}
+      className={hasLink ? "cursor-pointer" : "cursor-default"}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKeyDown}
+      role={hasLink ? "button" : undefined}
+      tabIndex={hasLink ? 0 : undefined}
     >
       <Tilt
         options={{
@@ -97,7 +117,7 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer"
+        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
       >
         {image && (
           <div className="relative w-full h-[230px]">
@@ -111,7 +131,10 @@ const ProjectCard = ({
             {source_code_link && source_code_link.includes('github.com') && (
               <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
                 <div
-                  onClick={() => window.open(source_code_link, "_blank")}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    window.open(source_code_link, "_blank");
+                  }}
                   className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
                 >
                   <img
@@ -144,7 +167,10 @@ const ProjectCard = ({
         {!image && source_code_link && source_code_link.includes('github.com') && (
           <div className="mt-4 flex justify-end">
             <div
-              onClick={() => window.open(source_code_link, "_blank")}
+              onClick={(event) => {
+                event.stopPropagation();
+                window.open(source_code_link, "_blank");
+              }}
               className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
             >
               <img

@@ -44,7 +44,7 @@ const Navbar = () => {
         >
           <img src={logo} alt='Hashir Qureshi logo' className='w-9 h-9 object-contain' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            Hashir Qureshi &nbsp;|&nbsp; Developer &nbsp;|&nbsp; Tech Consultant
+            Hashir Qureshi &nbsp;|&nbsp; Mobile App Developer 
           </p>
         </Link>
 

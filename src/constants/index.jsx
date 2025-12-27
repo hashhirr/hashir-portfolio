@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from "react";
 import {
   logo,
   backend,
@@ -7,41 +6,35 @@ import {
   mobile,
   web,
   github,
-  menu,
-  close,
-  css,
-  gearXpert,
-  mysql,
-  express,
   aws,
-  mui,
-  gsap,
-  framer,
-  figma,
   git,
-  html,
   javascript,
-  mongodb,
-  nodejs,
   reactjs,
   redux,
-  tailwind,
-  threejs,
+  firebase,
   flood1,
-  flood2,
+  kotlin,
   rider,
   image,
-} from '../assets'
-
+  postgresql,
+  appStore,
+  firechat,
+  crossroad,
+  playstore,
+  appstoreConnect,
+} from "../assets";
 
 // Import company logos separately
-import tekisky from "../assets/company/tekisky.png";
-
+import tekisky from "../assets/company/tekisky.webp";
 
 export const navLinks = [
   {
     id: "about",
     title: "About",
+  },
+  {
+    id: "experience",
+    title: "Experience",
   },
   {
     id: "projects",
@@ -52,10 +45,6 @@ export const navLinks = [
     title: "Skills",
   },
   {
-    id: "experience",
-    title: "Experience",
-  },
-  {
     id: "contact",
     title: "Contact",
   },
@@ -63,19 +52,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "React Native Developer",
+    title: "Mobile Engineer",
     icon: mobile,
   },
   {
-    title: "Web Developer",
+    title: "Frontend Engineer",
     icon: web,
   },
   {
-    title: "Backend Developer",
+    title: "Backend & APIs",
     icon: backend,
   },
   {
-    title: "Tech Consultant",
+    title: "Product Delivery",
     icon: creator,
   },
 ];
@@ -94,64 +83,108 @@ const technologies = [
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
   },
   {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
+    name: "Hasura",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Hasura-icon-primary.png",
   },
   {
     name: "git",
     icon: git,
   },
   {
-    name: "figma",
-    icon: figma,
+    name: "Jira",
+    icon: "https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2699%2FPNG%2F512%2Fatlassian_jira_logo_icon_170511.png&id=170511&pack_or_individual=pack",
   },
   {
     name: "docker",
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg",
   },
+  {
+    name: "github",
+    icon: github,
+  },
+  {
+    name: "aws",
+    icon: aws,
+  },
+  {
+    name: "NestJs",
+    icon: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/4/nestjs-jwfsqeivmvfew9nvk133ar.png/nestjs-j1at77rfuynk96ecx1d21.png?_a=DATAg1AAZAA0",
+  },
+  {
+    name: "redux",
+    icon: redux,
+  },
+  {
+    name: "Zustand",
+    icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpHj4UwTW4ANSlNjzQOiiOqfDa6kal9RpF0A&s",
+  },
+  {
+    name: "Kotlin",
+    icon: kotlin,
+  },
+  {
+    name: "Swift",
+    icon: "https://cdn-icons-png.flaticon.com/512/919/919833.png",
+  },
+  {
+    name: "Firebase",
+    icon: firebase,
+  },
+  {
+    name: "Supabase",
+    icon: "https://img.icons8.com/color/512/supabase.png",
+  },
+
+  {
+    name: "PostgreSQL",
+    icon: postgresql,
+  },
+  {
+    name: "Fastlane",
+    icon: "https://cdn.iconscout.com/icon/premium/png-256-thumb/fastlane-icon-svg-download-png-9632962.png",
+  },
+  {
+    name: "App Store",
+    icon: appStore,
+  },
+  {
+    name: "Google Play Store",
+    icon: "https://cdn-icons-png.flaticon.com/512/888/888857.png",
+  },
+
+  {
+    name: "Xcode",
+    icon: "https://developer.apple.com/assets/elements/icons/xcode-s/xcode-s-256x256_2x.png",
+  },
+  {
+    name: "Android Studio",
+    icon: "https://images.icon-icons.com/1381/PNG/512/androidstudio_93831.png",
+  },
 ];
 
 const experiences = [
   {
-    title: "IT Head",
-    company_name: "AH & HNB Digital Creations Pvt. Ltd.",
+    title: "Lead Software Engineer",
+    company_name: "Thunderbird Technologies",
     icon: tekisky,
     iconBg: "#383E56",
-    date: "Oct 2024 - Present",
+    date: "Oct 2023 – Present",
     points: [
-      "Leading IT operations and digital transformation initiatives for the company.",
-      "Managing development teams and overseeing project delivery.",
-      "Implementing scalable solutions and ensuring technical excellence.",
-      "Collaborating with stakeholders to align technology with business goals.",
+      "Leading the development of Mistify’s core mobile application using React Native, focusing on performance, media handling, and a smooth user experience.",
+      "Designed and implemented backend services using Node.js, NestJS, and cloud storage to support authentication, media uploads, and real-time features.",
+      "Owned the full product development lifecycle, from technical planning and architecture decisions to deployment and iteration.",
+      "Worked closely with product and design to translate requirements into scalable, production-ready solutions.",
     ],
   },
   {
-    title: "IT Associate",
-    company_name: "Kiser Computing Consulting",
-    icon: tekisky,
-    iconBg: "#383E56",
-    date: "Oct 2023 - Sep 2024",
-    points: [
-      "Provided technical consulting services to clients across various industries.",
-      "Developed and maintained web applications using modern technologies.",
-      "Assisted in project planning and technical architecture decisions.",
-      "Supported clients in their digital transformation journey.",
-    ],
-  },
-  {
-    title: "Front-End Developer | Consultant",
+    title: "Front-End Developer",
     company_name: "Freelance",
     icon: tekisky,
     iconBg: "#383E56",
-    date: "2021 - Present",
+    date: "2022 - Present",
     points: [
       "Developed responsive web applications and mobile apps for diverse clients.",
-      "Provided technical consultation and digital strategy recommendations.",
-      "Built scalable solutions using React, React Native, and Flutter.",
+      "Built scalable solutions using React, React Native.",
       "Delivered high-quality products with focus on user experience.",
     ],
   },
@@ -159,112 +192,209 @@ const experiences = [
 
 const projects = [
   {
-    name: <><span className="text-red-500">🩸</span> BloodLine Connect</>,
+    name: <>Rydoo – React Native Cab Service App</>,
     description: (
       <>
-        <a href="https://www.bloodlinesconnect.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline font-semibold">www.bloodlinesconnect.com</a><br />
-        <em>Founder & Lead Developer | June 2024 - Present | In Development - Alpha Testing</em><br /><br />
-        AI-powered blood donation platform reducing donor search time from 48 hours to 30 minutes through intelligent matching algorithms and real-time coordination, connecting donors in emergencies.<br /><br />
-        Built full-stack Progressive Web App with React 19 and Firebase, achieving <strong>89% match accuracy</strong> in alpha testing. Currently processing many emergency requests.<br /><br />
-        <strong>What Makes It Special:</strong><br />
-        - AI matching: blood compatibility + GPS proximity + urgency scoring<br />
-        - Multi-channel alerts: Push, SMS, WhatsApp (95% delivery rate)<br />
-        - Offline-capable PWA for low-bandwidth regions<br />
-        - Zero-registration emergency access<br />
-        - Real-time geospatial queries (5-50km radius)<br /><br />
-        
-        🌐 <a href="https://www.bloodlinesconnect.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Try it: www.bloodlinesconnect.com</a><br /><br />
-        
+        Rydo is a fully–functional, ready-to-use React Native ride-hailing
+        application built with Expo, Firebase, and Google Maps. It offers a
+        complete modern Uber-style experience and is perfect for businesses or
+        clients looking to launch a taxi, cab, or ride-booking service.
+        <br />
+        This project demonstrates my ability to build production-ready mobile
+        apps with real-time features, clean architecture, and scalable
+        integrations.
+        <br />
+        <br />
       </>
     ),
     tags: [
-      { name: "reactjs", color: "blue-text-gradient" },
-      { name: "firebase", color: "green-text-gradient" },
-      { name: "javascript", color: "pink-text-gradient" },
-      { name: "tailwind", color: "blue-text-gradient" },
-      { name: "pwa", color: "green-text-gradient" },
-      { name: "healthtech", color: "pink-text-gradient" },
-      { name: "socialimpact", color: "blue-text-gradient" },
+      { name: "React Native", color: "blue-text-gradient" },
+      { name: "Firebase", color: "green-text-gradient" },
+      { name: "TypeScript", color: "pink-text-gradient" },
+      { name: "Redux", color: "blue-text-gradient" },
+      { name: "Swift", color: "green-text-gradient" },
+      { name: "Kotlin", color: "pink-text-gradient" },
+      { name: "Hybrid App", color: "blue-text-gradient" },
     ],
     image: image,
-    source_code_link: "https://www.bloodlinesconnect.com",
+    source_code_link: "https://github.com/hashhirr",
   },
   {
-    name: "IoT-Based Flood Prediction System",
-    description:
-      "Developed a real-time flood prediction system that combines hardware sensors and a mobile application to detect and alert users about potential flood risks in advance. The project focuses on early warning through environmental monitoring and predictive algorithms. I was responsible for building the mobile application and coordinating the integration between hardware and software components.",
+    name: "Pulse Music — Music Player Built in React Native",
+    description: (
+      <>
+        Pulse Music is a beautifully designed, high-performance mobile music
+        player built in Expo (React Native) that scans all local audio files
+        from the device, displays them in a clean UI, and provides a smooth
+        playback experience. It also supports downloading MP3 files from secure
+        URLs and saving them directly into the device’s media library.
+        <br />
+        This project was built end-to-end using modern Expo + React Native
+        architecture with Redux Toolkit, responsive UI techniques, and a clean,
+        user-focused interface.
+        <br />
+        <br />
+      </>
+    ),
     tags: [
-      { name: "react-native", color: "blue-text-gradient" },
-      { name: "iot", color: "green-text-gradient" },
-      { name: "sensors", color: "pink-text-gradient" },
-      { name: "prediction", color: "blue-text-gradient" },
+      { name: "React Native", color: "blue-text-gradient" },
+      { name: "Redux", color: "green-text-gradient" },
+      { name: "TypeScript", color: "pink-text-gradient" },
+      { name: "Responsive Design", color: "blue-text-gradient" },
+      { name: "Hybrid App", color: "green-text-gradient" },
     ],
     image: flood1,
-    source_code_link: "https://github.com/hashirqureshi",
+    source_code_link: "https://github.com/hashhirr",
   },
   {
-    name: "Rider App – Real-Time Delivery Management",
-    description:
-      "A mobile application designed to streamline delivery operations for riders. The app enables riders to receive delivery requests, track parcels in real time, and update their status from pickup to delivery.",
+    name: "Mistify - Social Media Mobile Application",
+    description: (
+      <>
+        I led the end-to-end development of a modern social media app in React
+        Native with real-time stories, posts, comments, notifications, media
+        uploads, and map-based discovery. I built a fully custom native camera
+        for iOS and Android with filters and optimized performance. The app used
+        Firebase auth, NestJS integrations, optimized native modules, and
+        Zustand for global state management, including a centralized light and
+        dark mode system. I also improved overall stability, reduced load times,
+        and delivered a smooth, reliable user experience.The result was
+        production ready across both platforms.
+      </>
+    ),
     tags: [
-      { name: "react-native", color: "blue-text-gradient" },
-      { name: "real-time", color: "green-text-gradient" },
-      { name: "notifications", color: "pink-text-gradient" },
-      { name: "tracking", color: "blue-text-gradient" },
+      { name: "React Native", color: "blue-text-gradient" },
+      { name: "Firebase", color: "green-text-gradient" },
+      { name: "NestJS", color: "pink-text-gradient" },
+      { name: "GraphQL", color: "blue-text-gradient" },
+      { name: "Native App Development", color: "blue-text-gradient" },
+      { name: "Swift", color: "green-text-gradient" },
+      { name: "kotlin", color: "pink-text-gradient" },
+      { name: "Hasura", color: "blue-text-gradient" },
+      { name: "Dockers", color: "blue-text-gradient" },
+      { name: "Push Notifications", color: "green-text-gradient" },
+      { name: "Zustand", color: "pink-text-gradient" },
+      { name: "AWS", color: "blue-text-gradient" },
+      { name: "Google Cloud Console", color: "blue-text-gradient" },
+      { name: "App Store Deployment", color: "green-text-gradient" },
+      { name: "Google Play Store Deployment", color: "pink-text-gradient" },
+      { name: "Fastlane", color: "blue-text-gradient" },
     ],
     image: rider,
-    source_code_link: "https://github.com/hashirqureshi",
-    details: {
-      features: [
-        "Real-Time Notifications: Riders receive instant updates for new delivery requests.",
-        "Location Tracking: Tracks rider movement during deliveries, providing accurate ETA and route updates.",
-        "Live Data Integration: Works with real customer and restaurant data to ensure accurate and efficient delivery operations.",
-        "Future Enhancements: Optimized route management, advanced notifications, and additional delivery analytics.",
-      ],
-      technologies: [
-        "React Native for cross-platform mobile development",
-        "Real-time data handling and notifications",
-        "Planned integration with enhanced tracking and analytics",
-      ],
-    },
+    source_code_link:
+      "https://play.google.com/store/apps/details?id=com.mistify&hl=en",
   },
   {
-    name: "Online Ambulance Service",
-    description:
-      "Developed a mobile application that connects users with nearby ambulance services in real time, significantly improving emergency response efficiency and saving lives. The app streamlines the process of requesting emergency medical assistance and ensures rapid response through advanced location-based technology. Integrated Google Maps API for real-time location tracking and optimized routing, enabled push notifications, and implemented secure user authentication.",
+    name: "Firechat - Firestore Chat App",
+    description: (
+      <>
+        A fully real-time mobile chat application built using React Native and
+        Firebase Firestore, designed for speed, reliability, and scalability.
+        <br />
+        The app supports instant message delivery, real-time updates, user
+        presence, and optimized read/write operations using Firestore’s live
+        listeners. Zustand is used for lightweight and efficient global state
+        management, keeping chat state, user sessions, and UI updates fast and
+        predictable without unnecessary re-renders.
+        <br /> The architecture focuses on clean separation of concerns,
+        reusable components, and performance-optimized rendering for long chat
+        lists. Firebase Authentication is integrated for secure user access,
+        making the app production-ready and scalable for real-world usage.
+      </>
+    ),
+
     tags: [
-      { name: "react-native", color: "blue-text-gradient" },
-      { name: "google-maps", color: "green-text-gradient" },
-      { name: "location-api", color: "pink-text-gradient" },
-      { name: "push-notifications", color: "blue-text-gradient" },
+      { name: "React Native", color: "blue-text-gradient" },
+      { name: "Firebase", color: "green-text-gradient" },
+      { name: "Firestore", color: "pink-text-gradient" },
+      { name: "Zustand", color: "blue-text-gradient" },
+      { name: "Real-time Sync", color: "green-text-gradient" },
     ],
+    image: firechat,
     // No image for this project
-    source_code_link: "https://github.com/hashirqureshi",
+    // source_code_link: "https://github.com/hashirqureshi",
   },
   {
-    name: "Daily Doctor",
-    description:
-      "Developed a mobile application that allows users to consult with doctors online for everyday health issues and book appointments. The app provides a convenient way for users to get medical advice and schedule visits without leaving home. I worked on the mobile app development and user experience.",
+    name: "Crossroad - Supabase Chat App",
+    description: (
+      <>
+        A modern real-time chat application built with React Native and
+        Supabase, leveraging PostgreSQL and Supabase’s real-time subscriptions
+        for instant message updates.
+        <br /> The app uses Supabase Auth for authentication and database-driven
+        messaging with real-time listeners for seamless chat experiences.
+        Zustand handles global state management, ensuring clean and efficient
+        control over user sessions, message streams, and UI state across the
+        app. <br />
+        This project demonstrates flexibility in backend choices, strong
+        understanding of real-time systems, and the ability to build scalable
+        chat solutions beyond Firebase, using SQL-based backends with real-time
+        capabilities.
+      </>
+    ),
     tags: [
-      { name: "react-native", color: "blue-text-gradient" },
-      { name: "healthcare", color: "green-text-gradient" },
-      { name: "appointments", color: "pink-text-gradient" },
+      { name: "React Native", color: "blue-text-gradient" },
+      { name: "Supabase", color: "green-text-gradient" },
+      { name: "PostgreSQL", color: "pink-text-gradient" },
+      { name: "Real-time Subscriptions", color: "blue-text-gradient" },
+      { name: "Zustand", color: "blue-text-gradient" },
     ],
+    image: crossroad,
     // No image for this project
-    source_code_link: "https://github.com/hashirqureshi",
+    // source_code_link: "https://github.com/hashirqureshi",
   },
   {
-    name: "Online Air Ticket Reservation System",
-    description:
-      "Developed a comprehensive web-based system for booking and managing air tickets. The platform allows users to register, search for available flights, make reservations, and manage their bookings online. The system features secure user authentication, a user-friendly interface, and integration with payment gateways for seamless transactions.",
+    name: "App Store Deployment",
+    description: (
+      <>
+        I handle complete mobile app deployment from scratch to production for
+        both iOS App Store .
+        <br /> This includes project setup, environment configuration, signing
+        certificates, provisioning profiles, keystores, build pipelines,
+        versioning, and release management. I manage TestFlight and internal
+        testing, handle store compliance requirements, and ensure smooth
+        production rollouts with optimized builds. <br />
+        I’ve shipped multiple production-ready apps with proper release
+        workflows, store assets, and post-deployment stability considerations.
+      </>
+    ),
     tags: [
-      { name: "web-development", color: "blue-text-gradient" },
-      { name: "database", color: "white-text-gradient" },
-      { name: "payment-gateway", color: "green-text-gradient" },
-      { name: "full-stack", color: "green-text-gradient" },
+      { name: "iOS App Store", color: "blue-text-gradient" },
+      { name: "TestFlight", color: "green-text-gradient" },
+      { name: "Production Builds", color: "pink-text-gradient" },
+      { name: "Release Management", color: "blue-text-gradient" },
+      { name: "Certificates", color: "green-text-gradient" },
     ],
+    image: appstoreConnect,
     // No image for this project
-    source_code_link: "https://github.com/hashirqureshi",
+    // source_code_link: "https://github.com/hashirqureshi",
+  },
+  {
+    name: "Google Play Store Deployment",
+    description: (
+      <>
+        I manage the complete Google Play Store deployment process from initial
+        setup to production release for React Native applications.
+        <br /> This includes configuring Android projects, generating and
+        managing keystores, setting up build variants, handling app signing,
+        versioning, and preparing optimized release builds (AAB). I also handle
+        internal testing, closed/open testing tracks, Play Console
+        configuration, and ensure compliance with Google Play policies.
+        <br />
+        The process is optimized for smooth updates, reliable rollouts, and
+        production stability, ensuring apps are shipped with proper performance,
+        security, and maintainability from day one.
+      </>
+    ),
+    tags: [
+      { name: "React Native", color: "blue-text-gradient" },
+      { name: "Android App Bundles (AAB)", color: "green-text-gradient" },
+      { name: "Keystores", color: "pink-text-gradient" },
+      { name: "Play Console", color: "blue-text-gradient" },
+      { name: "Production Releases", color: "pink-text-gradient" },
+    ],
+    image: playstore,
+    // No image for this project
+    // source_code_link: "https://github.com/hashirqureshi",
   },
 ];
 

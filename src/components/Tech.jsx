@@ -68,24 +68,31 @@ const Tech = () => {
             <motion.div
               key={technology.name}
               variants={staggerItem(index * 0.05)}
-              whileHover={hoverScale}
-              whileTap={{ scale: 0.9 }}
-              className="w-32 h-32 md:w-36 md:h-36 glass rounded-xl p-3 cursor-pointer"
+              className="group flex flex-col items-center"
             >
-              <motion.img
-                src={technology.icon}
-                alt={technology.name}
-                className="tech-icon w-full h-full object-contain"
-                loading="lazy"
-                whileHover={{
-                  filter: "brightness(1.2) saturate(1.3)",
-                  rotate: [0, -5, 5, 0],
-                }}
-                transition={{
-                  rotate: { duration: 0.5, ease: "easeInOut" },
-                  filter: { duration: 0.3 }
-                }}
-              />
+              <motion.div
+                whileHover={hoverScale}
+                whileTap={{ scale: 0.9 }}
+                className="relative w-32 h-32 md:w-36 md:h-36 glass rounded-xl p-3 cursor-pointer"
+              >
+                <motion.img
+                  src={technology.icon}
+                  alt={technology.name}
+                  className="tech-icon w-full h-full object-contain"
+                  loading="lazy"
+                  whileHover={{
+                    filter: "brightness(1.2) saturate(1.3)",
+                    rotate: [0, -5, 5, 0],
+                  }}
+                  transition={{
+                    rotate: { duration: 0.5, ease: "easeInOut" },
+                    filter: { duration: 0.3 },
+                  }}
+                />
+              </motion.div>
+              <span className="mt-3 h-0 text-[12px] font-semibold tracking-[0.2em] text-white/80 opacity-0 transition duration-200 group-hover:opacity-100">
+                {technology.name}
+              </span>
             </motion.div>
           ))
         )}

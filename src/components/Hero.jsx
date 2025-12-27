@@ -6,6 +6,7 @@ import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 500);
 
   // Simulate 3D model loading
   React.useEffect(() => {
@@ -13,6 +14,20 @@ const Hero = () => {
       setIsLoading(false);
     }, 2000);
     return () => clearTimeout(timer);
+  }, []);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
   }, []);
 
   return (
@@ -30,15 +45,15 @@ const Hero = () => {
             Hi, I'm <span className='bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent'>Hashir Qureshi</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            Building mobile apps <br/>
-            Providing tech guidance <br/>
-            Leading projects
+            Building production-ready mobile apps <br/>
+            Designing scalable backend systems <br/>
+            Leading products from idea to launch
           </p>
         </div>
       </div>
 
       {/* Temporarily disabled 3D model due to geometry issues */}
-      {isLoading ? (
+      {/* {isLoading ? (
         // 3D model skeleton loader
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-96 h-96 bg-gray-700 rounded-lg animate-pulse flex items-center justify-center">
@@ -47,25 +62,28 @@ const Hero = () => {
         </div>
       ) : (
         <ComputersCanvas />
-      )}
+      )} */}
 
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
-            />
+      {/* {!isMobile && !isLoading && (
+        <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
+          <div className='flex items-center gap-3 rounded-full border border-secondary/25 bg-black/25 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-secondary/70 backdrop-blur opacity-70'>
+            <span className='hidden xs:inline'>Hold and drag horizontally</span>
+            <span className='xs:hidden'>Drag horizontally</span>
+            <div className='relative h-[6px] w-16 overflow-hidden rounded-full bg-secondary/15'>
+              <motion.span
+                animate={{ x: [0, 36, 0] }}
+                transition={{
+                  duration: 1.4,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeInOut",
+                }}
+                className='absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-secondary/60'
+              />
+            </div>
           </div>
-        </a>
-      </div>
+        </div>
+      )} */}
     </section>
   );
 };

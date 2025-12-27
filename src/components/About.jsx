@@ -7,26 +7,27 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { styles } from "../styles";
 import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { staggerContainer, staggerItem, hoverScale, hoverGlow } from "../utils/motion";
+import {
+  staggerContainer,
+  staggerItem,
+  hoverScale,
+  hoverGlow,
+} from "../utils/motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const useGsap = (elementRef, animation, delay = 0) => {
   useEffect(() => {
     if (elementRef.current) {
-      gsap.fromTo(
-        elementRef.current,
-        animation.from,
-        {
-          ...animation.to,
-          delay,
-          scrollTrigger: {
-            trigger: elementRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      gsap.fromTo(elementRef.current, animation.from, {
+        ...animation.to,
+        delay,
+        scrollTrigger: {
+          trigger: elementRef.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
     }
   }, [elementRef, animation, delay]);
 };
@@ -48,7 +49,8 @@ const ServiceCard = ({ index, title, icon }) => {
           <motion.div
             className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col cursor-pointer"
             whileHover={{
-              background: "linear-gradient(135deg, rgba(145, 94, 255, 0.1), rgba(96, 165, 250, 0.1))",
+              background:
+                "linear-gradient(135deg, rgba(145, 94, 255, 0.1), rgba(96, 165, 250, 0.1))",
             }}
             transition={{ duration: 0.3 }}
           >
@@ -87,31 +89,61 @@ const About = () => {
   });
 
   // Paragraph Animation
-  useGsap(paragraphRef, {
-    from: { opacity: 0, y: 50 },
-    to: { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
-  }, 0.3);
+  useGsap(
+    paragraphRef,
+    {
+      from: { opacity: 0, y: 50 },
+      to: { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
+    },
+    0.3
+  );
 
   return (
     <>
       <div ref={headingRef}>
-        <p className={`${styles.sectionSubText} bg-gradient-to-r from-[#A78BFA] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}>Introduction</p>
-        <h2 className={`${styles.sectionHeadText} bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}>Overview</h2>
+        <p
+          className={`${styles.sectionSubText} bg-gradient-to-r from-[#A78BFA] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}
+        >
+          Introduction
+        </p>
+        <h2
+          className={`${styles.sectionHeadText} bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}
+        >
+          Overview
+        </h2>
       </div>
 
-      <p ref={paragraphRef} className="mt-4 text-[17px] max-w-3xl leading-[30px] desc-paragraph decorated">
-        I'm a skilled app developer with a background in computer science. I've worked as a Front-End Developer and IT Associate, and have also led client projects as part of my own development company.
-
-        I manage projects from planning to delivery, building scalable mobile solutions that help businesses go digital. I learn quickly, adapt to new challenges, and work closely with teams to deliver efficient, user-friendly apps that solve real-world problems.
+      <p
+        ref={paragraphRef}
+        className="mt-4 text-[17px] max-w-3xl leading-[30px] desc-paragraph decorated"
+      >
+        I’m a Senior React Native developer with 3+ years of experience building
+        high-performance, scalable, and visually polished mobile applications. I
+        specialize in React Native (both React Native CLI and Expo), TypeScript,
+        advanced media handling, custom native iOS/Android modules, and seamless
+        backend integrations using NestJS, Firebase, and Hasura GraphQL. I’ve
+        built full production-grade apps from scratch, including social media
+        platforms, real-time chat systems, map-based applications, and
+        interactive content platforms with heavy image/video workflows. I focus
+        heavily on performance, smooth animations, clean architecture, and
+        pixel-perfect UI/UX.
+        <br />
+        <br /> I also have complete end-to-end experience with the entire app
+        launch lifecycle, including preparing builds, signing, certificates,
+        provisioning, store listing creation, and publishing apps to both the
+        iOS App Store and Google Play Store. I can also automate deployment
+        pipelines using Fastlane, making build distribution, screenshots, and
+        release submissions faster and more reliable. This means I can take your
+        project from idea → development → deployment → ongoing updates.
       </p>
 
       <div className="mt-6">
         <a
           href={`${import.meta.env.BASE_URL}Hashir-Qureshi-CV.pdf`}
-          target='_blank'
-          rel='noopener noreferrer'
+          target="_blank"
+          rel="noopener noreferrer"
           download
-          className='inline-block btn-gradient px-5 py-2 text-[16px] font-medium'
+          className="inline-block btn-gradient px-5 py-2 text-[16px] font-medium"
         >
           Download CV
         </a>

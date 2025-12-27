@@ -6,29 +6,30 @@ import web from "./web.png";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-import gsap from './tech/gsap.png'
-import framer from './tech/framer.png';
+
 import css from "./tech/css.png";
-import figma from "./tech/figma.png";
-import gearXpert from './gearXpert.png';
-import mysql from './tech/mysql.png';
-import express from './tech/express.png';
-import aws from './tech/aws.png';
-import mui from './tech/mui.png'
+
+import gearXpert from "./gearXpert.png";
+import mysql from "./tech/mysql.png";
+import express from "./tech/express.png";
+import aws from "./tech/aws.png";
+
 import git from "./tech/git.png";
-import html from "./tech/html.png";
 import javascript from "./tech/javascript.png";
-import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
+
 import reactjs from "./tech/reactjs.png";
 import redux from "./tech/redux.png";
-import tailwind from "./tech/tailwind.png";
-import threejs from "./tech/threejs.svg";
-import flood1 from './flood1.jpeg';
-import flood2 from './flood2.jpeg';
-import rider from './rider.jpeg';
-import image from './image.png';
-
+import postgresql from "./tech/postgresql.png";
+import flood1 from "./flood1.png";
+import rider from "./rider.png";
+import image from "./image.png";
+import kotlin from "./tech/kotlin.png";
+import firebase from "./tech/firebase.png";
+import appStore from "./tech/appStore.png";
+import crossroad from "./crossroad.png";
+import firechat from "./firechat.png";
+import playstore from "./playstore.png";
+import appstoreConnect from "./appstoreConnect.png";
 export {
   logo,
   backend,
@@ -43,21 +44,19 @@ export {
   mysql,
   express,
   aws,
-  mui,
-  gsap,
-  framer,
-  figma,
   git,
-  html,
   javascript,
-  mongodb,
-  nodejs,
+  firechat,
   reactjs,
   redux,
-  tailwind,
-  threejs,
+  crossroad,
   flood1,
-  flood2,
   rider,
   image,
+  kotlin,
+  firebase,
+  postgresql,
+  appStore,
+  playstore,
+  appstoreConnect,
 };

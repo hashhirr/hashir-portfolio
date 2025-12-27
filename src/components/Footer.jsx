@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="w-full py-6 bg-black-100/55 text-white flex flex-col items-center gap-4">
       <h4 className="text-[16px] font-semibold bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent">Let’s connect</h4>
       <div className="flex justify-center gap-6 flex-wrap">
-        <span
+        {/* <span
           title="Email icon (inactive)"
           aria-label="Email icon inactive"
         >
@@ -17,7 +17,7 @@ const Footer = () => {
           aria-label="Phone icon inactive"
         >
           <FaPhone size={24} />
-        </span>
+        </span> */}
         <a
           href="https://github.com/hashhirr"
           target="_blank"
