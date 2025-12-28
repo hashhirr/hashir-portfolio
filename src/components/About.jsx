@@ -139,10 +139,9 @@ const About = () => {
 
       <div className="mt-6">
         <a
-          href={`${import.meta.env.BASE_URL}Hashir-Qureshi-CV.pdf`}
+          href="https://drive.google.com/uc?export=download&id=1zAPoxwGbjQoEgWrB2ExnE0tXBWnxxELO"
           target="_blank"
           rel="noopener noreferrer"
-          download
           className="inline-block btn-gradient px-5 py-2 text-[16px] font-medium"
         >
           Download CV

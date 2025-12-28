@@ -224,7 +224,7 @@ const Works = () => {
       </div>
 
       <motion.div
-        className="works-container mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5"
+        className="works-container mt-20 flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory"
         variants={staggerContainer(0.1, 0.2)}
         initial="hidden"
         whileInView="show"
@@ -233,7 +233,7 @@ const Works = () => {
         {projects.map((project, index) => (
           <motion.div
             key={`project-${index}`}
-            className="project-card"
+            className="project-card snap-start shrink-0 w-[280px] sm:w-[320px] lg:w-[360px]"
             whileHover={hoverGlow}
             transition={{ duration: 0.3 }}
           >
