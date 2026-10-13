@@ -1,95 +1,109 @@
-import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { m, useScroll, useSpring } from "framer-motion";
+import { LuArrowUpRight } from "react-icons/lu";
 
-import "react-vertical-timeline-component/style.min.css";
+import { EXPERIENCES } from "../constants/content";
+import Reveal from "./ui/Reveal";
+import SectionHeading from "./ui/SectionHeading";
 
-import { styles } from "../styles";
-import { experiences } from "../constants";
-import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
-
-const ExperienceCard = ({ experience }) => {
-  return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
-      icon={
-        <div className='flex justify-center items-center w-full h-full'>
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[90%] h-[90%] object-contain'
-            loading="lazy"
-          />
-        </div>
-      }
+const ExternalText = ({ href, children, className = "" }) =>
+  href ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-0.5 underline decoration-fg/20 underline-offset-4 transition-colors hover:text-accent hover:decoration-current ${className}`}
     >
-      <div className='rounded-xl border border-white/5 hover:border-white/10 transition-colors duration-300 p-4 -m-4'>
-        <div>
-          <h3 className='text-[24px] font-bold bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent'>
-            {experience.title}
-          </h3>
-          <p
-            className='text-[16px] font-semibold bg-gradient-to-r from-[#C4B5FD] via-[#93C5FD] to-[#6EE7B7] bg-clip-text text-transparent opacity-90'
-            style={{ margin: 0 }}
-          >
-            {experience.company_name}
-          </p>
-        </div>
-
-        <div className='h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-4' />
-
-        <div className='relative pl-4'>
-          <span className='absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#915EFF] via-[#60A5FA] to-[#34D399] opacity-60' />
-          <ul className='list-disc list-outside pl-5 space-y-2 leading-7 list-gradient transition-colors duration-300'>
-            {experience.points.map((point, index) => (
-              <li
-                key={`experience-point-${index}`}
-                className='text-white-100 text-[14px] pl-1 tracking-wider'
-              >
-                {point}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </VerticalTimelineElement>
+      {children}
+      <LuArrowUpRight className="text-[0.85em]" aria-hidden="true" />
+    </a>
+  ) : (
+    <span className={className}>{children}</span>
   );
-};
+
+const Role = ({ job }) => (
+  <Reveal className="relative pl-10 sm:pl-14">
+    <span className="absolute left-0 top-1.5 grid h-[22px] w-[22px] place-items-center rounded-full border hairline bg-bg sm:left-[3px]">
+      <span className="h-2 w-2 rounded-full bg-accent" />
+      {job.current && <span className="absolute h-2 w-2 animate-ping-slow rounded-full bg-accent" />}
+    </span>
+
+    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+      <h3 className="text-2xl font-semibold tracking-tight sm:text-[1.7rem]">
+        {job.role}
+        <span className="text-muted"> · </span>
+        <ExternalText href={job.companyUrl} className="text-fg">
+          {job.company}
+        </ExternalText>
+      </h3>
+      <span className="font-mono text-xs uppercase tracking-wider text-muted">{job.period}</span>
+    </div>
+
+    <p className="mt-3 max-w-3xl text-pretty leading-relaxed text-fg/85">{job.summary}</p>
+
+    {job.sites?.length > 0 && (
+      <div className="mt-4 flex flex-wrap gap-2">
+        {job.sites.map((site) => (
+          <a
+            key={site.url}
+            href={site.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-full border hairline bg-elev/60 py-1.5 pl-3 pr-2.5 text-sm transition-colors hover:border-accent/40"
+          >
+            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">{site.label}</span>
+            <span className="font-medium group-hover:text-accent">{site.name}</span>
+            <LuArrowUpRight
+              className="text-muted transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+              aria-hidden="true"
+            />
+          </a>
+        ))}
+      </div>
+    )}
+
+    <ul className="mt-5 grid max-w-4xl gap-3">
+      {job.points.map((point) => (
+        <li key={point} className="flex gap-3 text-pretty text-[15px] leading-relaxed text-muted">
+          <span className="mt-[0.7em] h-px w-3 shrink-0 bg-accent/60" />
+          {point}
+        </li>
+      ))}
+    </ul>
+
+    <div className="mt-5 flex flex-wrap gap-1.5">
+      {job.stack.map((t) => (
+        <span key={t} className="chip">
+          {t}
+        </span>
+      ))}
+    </div>
+  </Reveal>
+);
 
 const Experience = () => {
-  return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center bg-gradient-to-r from-[#A78BFA] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}>
-          What I have done so far
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}>
-          Work Experience
-        </h2>
-      </motion.div>
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 60%"] });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-      <div className='mt-20 flex flex-col'>
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
+  return (
+    <section id="experience" className="relative py-16 sm:py-24">
+      <div className="container-x">
+        <SectionHeading index="03" eyebrow="Experience" title="Where I'm" accent="shipping now." />
+
+        <div ref={ref} className="relative mt-16">
+          <div className="absolute bottom-2 left-[10px] top-2 w-px bg-fg/10 sm:left-[13px]" aria-hidden="true">
+            <m.div style={{ scaleY }} className="h-full w-full origin-top bg-gradient-to-b from-accent to-sky" />
+          </div>
+          <div className="space-y-16">
+            {EXPERIENCES.map((job) => (
+              <Role key={job.company} job={job} />
+            ))}
+          </div>
+        </div>
       </div>
-    </>
+    </section>
   );
 };
 
-export default SectionWrapper(Experience, "experience");
+export default Experience;

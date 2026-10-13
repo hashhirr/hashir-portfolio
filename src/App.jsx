@@ -1,50 +1,40 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
 
-import { About, Skills, Contact, Experience, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
-import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
-import AppLoader from "./components/AppLoader";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import TechMarquee from "./components/TechMarquee";
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import Pipeline from "./components/Pipeline";
+import Stack from "./components/Stack";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import ScrollProgress from "./components/ui/ScrollProgress";
 
-const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate initial loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Adjust timing as needed
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <AppLoader />;
-  }
-
-  return (
-    <ErrorBoundary>
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <div className='relative z-0 bg-primary'>
-          <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
-            <Navbar />
-            <Hero />
-          </div>
+// LazyMotion + `m` components keep only the animation features we use in the bundle.
+const App = () => (
+  <ErrorBoundary>
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion="user">
+        <ScrollProgress />
+        <div className="grain" aria-hidden="true" />
+        <Navbar />
+        <main id="top" className="relative overflow-x-clip">
+          <Hero />
+          <TechMarquee />
           <About />
+          <Projects />
           <Experience />
-          <Tech />
-          <Works />
-          <Skills />
-          <div className='relative z-0'>
-            <Contact />
-
-            <StarsCanvas />
-            <Footer/>
-          </div>
-        </div>
-      </BrowserRouter>
-    </ErrorBoundary>
-  );
-}
+          <Pipeline />
+          <Stack />
+          <Contact />
+        </main>
+        <Footer />
+      </MotionConfig>
+    </LazyMotion>
+  </ErrorBoundary>
+);
 
 export default App;

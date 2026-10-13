@@ -1,74 +1,50 @@
-# Hashir Qureshi Portfolio
+# Hashir Qureshi · Portfolio
 
-A modern, responsive portfolio website built with React, Three.js, and Tailwind CSS.
+Personal portfolio of Hashir Ahmad Qureshi, Full Stack Engineer & React Native Developer.
 
+Live: https://hashhirr.github.io/hashir-portfolio/
 
-Check out my [portfolio][https://hashhirr.github.io/hashir-portfolio/].
+## Stack
 
-## 🚀 Features
+- **React 18 + Vite**, prerendered to static HTML at build time and hydrated in the browser
+- **Tailwind CSS** with CSS-variable design tokens (dark default + light theme)
+- **framer-motion** (via `LazyMotion`) for scroll/reveal animations; hero intro is pure CSS
+- Self-hosted fonts (Geist, Geist Mono, Instrument Serif) via Fontsource
+- EmailJS contact form, loaded on demand (falls back to `mailto:` if not configured)
 
-- **3D Graphics**: Interactive 3D models using Three.js
-- **Modern UI**: Beautiful animations with Framer Motion and GSAP
-- **Responsive Design**: Optimized for all devices
-- **Contact Form**: Integrated with EmailJS
-- **Smooth Animations**: Enhanced user experience with advanced animations
+## Editing your details
 
-## 🛠️ Technologies Used
+| What | Where |
+| --- | --- |
+| Name, email, phone, GitHub/LinkedIn, company & app links, CV file | `src/constants/config.js` |
+| Experience, projects, skills, pipeline copy | `src/constants/content.js` |
+| CV PDF | `public/Hashir-Qureshi-CV.pdf` (keep the name, or update `CV.file` in config) |
 
-- **Frontend**: React 18, Vite
-- **3D Graphics**: Three.js, React Three Fiber
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion, GSAP
-- **Icons**: React Icons, Heroicons
-- **Contact**: EmailJS
+### Contact form (optional)
 
-## 📦 Installation
-
-1. Clone the repository:
+Create a `.env` file:
 
 ```bash
-git clone https://github.com/hashhirr/hashir-portfolio.git
-cd Portfolio_nextJs
+VITE_APP_EMAILJS_SERVICE_ID=...
+VITE_APP_EMAILJS_TEMPLATE_ID=...
+VITE_APP_EMAILJS_PUBLIC_KEY=...
 ```
 
-2. Install dependencies:
+Without these, the form opens the visitor's email app instead.
+
+## Development
 
 ```bash
 npm install
+npm run dev       # http://localhost:5173/hashir-portfolio/
+npm run build     # client build + SSR build + prerender into dist/index.html
+npm run preview   # serve the production build
+npm run deploy    # build and publish dist/ to GitHub Pages
 ```
 
-3. Run the development server:
+## Performance notes
 
-```bash
-npm run dev
-```
-
-4. Open (https://hashir-portfolio.netlify.app/) in your browser.
-
-## 🚀 Deployment
-
-### GitHub Pages
-
-1. Build the project:
-
-```bash
-npm run build
-```
-then 
-
-```bash
-npm run deploy
-```
-2. Deploy to GitHub Pages or any static hosting service.
-
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Feel free to submit issues and enhancement requests!
-
----
-
+- Full page HTML is prerendered (`scripts/prerender.js`), so first paint needs no JavaScript and crawlers see all content.
+- Critical CSS is inlined, the main font is preloaded, and vendor code (React, framer-motion) is split into long-cached chunks.
+- Looping animations are CSS/transform-only and pause automatically when off screen.
+- Animations respect `prefers-reduced-motion`.

@@ -1,166 +1,100 @@
-import React, { useRef, useEffect } from "react";
-import { Tilt } from "react-tilt";
-import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LuArrowUpRight, LuGraduationCap } from "react-icons/lu";
 
-import { styles } from "../styles";
-import { services } from "../constants";
-import { SectionWrapper } from "../hoc";
-import {
-  staggerContainer,
-  staggerItem,
-  hoverScale,
-  hoverGlow,
-} from "../utils/motion";
+import { EDUCATION, EXPERIENCES, MARQUEE_STACK, SUMMARY } from "../constants/content";
+import { yearsOfExperience } from "../constants/config";
+import Reveal from "./ui/Reveal";
+import SectionHeading from "./ui/SectionHeading";
+import CountUp from "./ui/CountUp";
 
-gsap.registerPlugin(ScrollTrigger);
+const STATS = [
+  { value: yearsOfExperience(), suffix: "+", label: "Years shipping production software" },
+  { value: 3, label: "Live products & websites I run today" },
+  { value: 2, label: "App stores released to: iOS & Android" },
+  { value: MARQUEE_STACK.length, label: "Frameworks, services & tools in my daily stack" },
+];
 
-const useGsap = (elementRef, animation, delay = 0) => {
-  useEffect(() => {
-    if (elementRef.current) {
-      gsap.fromTo(elementRef.current, animation.from, {
-        ...animation.to,
-        delay,
-        scrollTrigger: {
-          trigger: elementRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-      });
-    }
-  }, [elementRef, animation, delay]);
-};
+const About = () => (
+  <section id="about" className="relative py-16 sm:py-24">
+    <div className="container-x">
+      <SectionHeading
+        index="01"
+        eyebrow="About"
+        title="One engineer for the whole"
+        accent="product lifecycle."
+      />
 
-const ServiceCard = ({ index, title, icon }) => {
-  return (
-    <motion.div
-      variants={staggerItem(index * 0.1)}
-      whileHover={hoverScale}
-      whileTap={{ scale: 0.95 }}
-      className="xs:w-[250px] w-full"
-    >
-      <Tilt className="w-full">
-        <motion.div
-          className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
-          whileHover={hoverGlow}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div
-            className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col cursor-pointer"
-            whileHover={{
-              background:
-                "linear-gradient(135deg, rgba(145, 94, 255, 0.1), rgba(96, 165, 250, 0.1))",
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            {icon && (
-              <motion.img
-                src={icon}
-                alt={title}
-                className="w-16 h-16 object-contain"
-                loading="lazy"
-                whileHover={{ rotate: 5, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              />
-            )}
-            <motion.h3
-              className="text-[20px] font-bold text-center bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              {title}
-            </motion.h3>
-          </motion.div>
-        </motion.div>
-      </Tilt>
-    </motion.div>
-  );
-};
+      <div className="mt-14 grid gap-5 lg:grid-cols-[1.25fr_1fr]">
+        <Reveal className="card p-7 sm:p-9">
+          <p className="text-pretty text-lg leading-relaxed text-fg/90 sm:text-xl sm:leading-relaxed">{SUMMARY}</p>
+          <p className="mt-5 text-pretty leading-relaxed text-muted">
+            Most of my time goes into React Native and TypeScript, backed by NestJS, Hasura GraphQL and PostgreSQL/PostGIS,
+            or Next.js with Firebase and Stripe on the web. I care about the unglamorous parts too: signing certificates,
+            security rules, canonical URLs and the funnel events that tell you whether a launch worked.
+          </p>
 
-const About = () => {
-  const headingRef = useRef(null);
-  const paragraphRef = useRef(null);
+          <div className="mt-8 flex items-center gap-4 border-t hairline pt-6">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-accent/10 text-accent">
+              <LuGraduationCap className="text-xl" aria-hidden="true" />
+            </span>
+            <div className="leading-snug">
+              <p className="font-medium">
+                {EDUCATION.degree} · {EDUCATION.school}
+              </p>
+              <p className="text-sm text-muted">
+                Class of {EDUCATION.year} · {EDUCATION.detail}
+              </p>
+            </div>
+          </div>
+        </Reveal>
 
-  // Heading Animation
-  useGsap(headingRef, {
-    from: { opacity: 0, x: -50 },
-    to: { opacity: 1, x: 0, duration: 1, ease: "power2.out" },
-  });
+        <div className="grid gap-5">
+          <div className="grid grid-cols-2 gap-5">
+            {STATS.map((s, i) => (
+              <Reveal key={s.label} delay={i * 0.06} className="card flex flex-col justify-between p-5 sm:p-6">
+                <p className="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                  <CountUp to={s.value} />
+                  {s.suffix && <span className="text-accent">{s.suffix}</span>}
+                </p>
+                <p className="mt-3 text-[13px] leading-snug text-muted">{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
 
-  // Paragraph Animation
-  useGsap(
-    paragraphRef,
-    {
-      from: { opacity: 0, y: 50 },
-      to: { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
-    },
-    0.3
-  );
-
-  return (
-    <>
-      <div ref={headingRef}>
-        <p
-          className={`${styles.sectionSubText} bg-gradient-to-r from-[#A78BFA] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}
-        >
-          Introduction
-        </p>
-        <h2
-          className={`${styles.sectionHeadText} bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] bg-clip-text text-transparent`}
-        >
-          Overview
-        </h2>
+          <Reveal delay={0.2} className="card p-5 sm:p-6">
+            <p className="eyebrow">
+              <span className="h-1.5 w-1.5 animate-blink rounded-full bg-accent" /> Currently
+            </p>
+            <ul className="mt-4 space-y-3">
+              {EXPERIENCES.map((e) => (
+                <li key={e.company} className="text-sm">
+                  <span className="font-medium">{e.role}</span>
+                  <span className="text-muted"> · </span>
+                  {(e.brands ?? [{ name: e.company, url: e.companyUrl }]).map((brand, i) => (
+                    <span key={brand.name}>
+                      {i > 0 && <span className="text-muted"> &amp; </span>}
+                      {brand.url ? (
+                        <a
+                          href={brand.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-0.5 text-muted underline decoration-transparent underline-offset-4 transition-colors hover:text-accent hover:decoration-current"
+                        >
+                          {brand.name}
+                          <LuArrowUpRight aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <span className="text-muted">{brand.name}</span>
+                      )}
+                    </span>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
       </div>
+    </div>
+  </section>
+);
 
-      <p
-        ref={paragraphRef}
-        className="mt-4 text-[17px] max-w-3xl leading-[30px] desc-paragraph decorated"
-      >
-        I’m a Senior React Native developer with 3+ years of experience building
-        high-performance, scalable, and visually polished mobile applications. I
-        specialize in React Native (both React Native CLI and Expo), TypeScript,
-        advanced media handling, custom native iOS/Android modules, and seamless
-        backend integrations using NestJS, Firebase, and Hasura GraphQL. I’ve
-        built full production-grade apps from scratch, including social media
-        platforms, real-time chat systems, map-based applications, and
-        interactive content platforms with heavy image/video workflows. I focus
-        heavily on performance, smooth animations, clean architecture, and
-        pixel-perfect UI/UX.
-        <br />
-        <br /> I also have complete end-to-end experience with the entire app
-        launch lifecycle, including preparing builds, signing, certificates,
-        provisioning, store listing creation, and publishing apps to both the
-        iOS App Store and Google Play Store. I can also automate deployment
-        pipelines using Fastlane, making build distribution, screenshots, and
-        release submissions faster and more reliable. This means I can take your
-        project from idea → development → deployment → ongoing updates.
-      </p>
-
-      <div className="mt-6">
-        <a
-          href="https://drive.google.com/uc?export=download&id=1zAPoxwGbjQoEgWrB2ExnE0tXBWnxxELO"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block btn-gradient px-5 py-2 text-[16px] font-medium"
-        >
-          Download CV
-        </a>
-      </div>
-
-      <motion.div
-        className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-10"
-        variants={staggerContainer(0.1, 0.2)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
-      </motion.div>
-    </>
-  );
-};
-
-export default SectionWrapper(About, "about");
+export default About;

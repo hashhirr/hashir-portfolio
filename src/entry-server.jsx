@@ -1,0 +1,12 @@
+import React from "react";
+import { renderToString } from "react-dom/server";
+
+import App from "./App";
+
+// Used at build time by scripts/prerender.js to bake the page into index.html.
+export const render = () =>
+  renderToString(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );

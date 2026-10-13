@@ -1,141 +1,176 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { LuDownload, LuMenu, LuMoon, LuSun, LuX } from "react-icons/lu";
 
-import { styles } from "../styles";
-import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { NAV_LINKS } from "../constants/content";
+import { CV, PROFILE, cvHref } from "../constants/config";
+import { useActiveSection } from "../hooks/useActiveSection";
+import { toggleTheme } from "../hooks/theme";
+import Logo from "./ui/Logo";
+
+const SECTION_IDS = NAV_LINKS.map((l) => l.id);
+
+// useLayoutEffect warns during prerendering; fall back to useEffect on the server.
+const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+// Both icons are rendered; CSS shows the right one, so no theme state is needed.
+const ThemeToggle = () => (
+  <button
+    type="button"
+    onClick={toggleTheme}
+    aria-label="Toggle light and dark theme"
+    className="relative grid h-10 w-10 place-items-center overflow-hidden rounded-full border hairline text-fg transition-colors hover:bg-fg/5"
+  >
+    <LuMoon className="absolute text-[17px] transition-all duration-500 light:-translate-y-6 light:rotate-90 light:opacity-0" />
+    <LuSun className="absolute translate-y-6 -rotate-90 text-[17px] opacity-0 transition-all duration-500 light:translate-y-0 light:rotate-0 light:opacity-100" />
+  </button>
+);
+
+/** Desktop links with a pill that slides to the active section. */
+const DesktopLinks = ({ active }) => {
+  const listRef = useRef(null);
+  const [pill, setPill] = useState(null);
+
+  useIsoLayoutEffect(() => {
+    const measure = () => {
+      const link = listRef.current?.querySelector(`[data-id="${active}"]`);
+      setPill(link ? { x: link.offsetLeft, w: link.offsetWidth } : null);
+    };
+    measure();
+    document.fonts?.ready.then(measure);
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [active]);
+
+  return (
+    <ul
+      ref={listRef}
+      className="relative hidden items-center gap-1 rounded-full border hairline bg-elev/60 p-1 backdrop-blur md:flex"
+    >
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-1 h-[calc(100%-8px)] rounded-full bg-fg/[0.07] transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)]"
+        style={{
+          transform: `translateX(${pill?.x ?? 0}px)`,
+          width: pill?.w ?? 0,
+          opacity: pill ? 1 : 0,
+        }}
+      />
+      {NAV_LINKS.map((link) => (
+        <li key={link.id}>
+          <a
+            href={`#${link.id}`}
+            data-id={link.id}
+            aria-current={active === link.id ? "true" : undefined}
+            className={`relative block rounded-full px-4 py-1.5 text-sm transition-colors ${
+              active === link.id ? "text-fg" : "text-muted hover:text-fg"
+            }`}
+          >
+            {link.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 const Navbar = () => {
-  const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
+  const active = useActiveSection(SECTION_IDS);
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   return (
-    <nav
-      className={`${
-        styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "glass" : "bg-transparent"
-      }`}
-    >
-      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-        <Link
-          to="/"
-          className="flex items-center gap-2"
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
-        >
-          <img
-            src={logo}
-            alt="Hashir Qureshi logo"
-            className="w-9 h-9 object-contain"
-          />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex ">
-            Hashir Qureshi &nbsp;|&nbsp; Mobile App Developer
-          </p>
-        </Link>
-
-        <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((nav) => (
-            <li key={nav.id} className="relative group">
-              <a
-                href={`#${nav.id}`}
-                className={`${
-                  active === nav.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
-                onClick={() => setActive(nav.title)}
-              >
-                {nav.title}
-              </a>
-              <span
-                className={`pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] ${
-                  active === nav.title ? "scale-x-100" : ""
-                }`}
-              ></span>
-            </li>
-          ))}
-          <li>
-            <a
-              href="https://drive.google.com/uc?export=download&id=1Qqmz7aZboVDY1RkfUjdjc6WYaM6MqvUr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gradient px-4 py-2 text-[16px] font-medium"
-            >
-              Download CV
-            </a>
-          </li>
-        </ul>
-
-        <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close : menu}
-            alt="Navigation menu toggle"
-            className="w-[28px] h-[28px] object-contain"
-            onClick={() => setToggle(!toggle)}
-          />
-
-          <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 glass absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div
+        className={`transition-colors duration-500 ${
+          scrolled || open ? "border-b hairline bg-bg/80 backdrop-blur-xl" : "border-b border-transparent"
+        }`}
+      >
+        <nav className="container-x flex h-[68px] items-center justify-between gap-4" aria-label="Primary">
+          <a
+            href="#top"
+            className="group flex items-center gap-2.5"
+            onClick={() => setOpen(false)}
+            aria-label={`${PROFILE.shortName}, back to top`}
           >
-            <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
-              {navLinks.map((nav) => (
-                <li key={nav.id} className="w-full">
-                  <a
-                    href={`#${nav.id}`}
-                    className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                      active === nav.title ? "text-white" : "text-secondary"
-                    } w-full inline-block`}
-                    onClick={() => {
-                      setToggle(!toggle);
-                      setActive(nav.title);
-                    }}
-                  >
-                    {nav.title}
-                  </a>
-                  <span
-                    className={`block h-[2px] w-full bg-gradient-to-r from-[#915EFF] via-[#60A5FA] to-[#34D399] ${
-                      active === nav.title
-                        ? ""
-                        : "opacity-0 group-hover:opacity-100"
-                    } transition-opacity duration-300`}
-                  ></span>
-                </li>
-              ))}
-              <li>
-                <a
-                  href={`${import.meta.env.BASE_URL}Hashir-Qureshi-CV.pdf`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  className="btn-gradient px-4 py-2 rounded-md text-[14px] font-medium"
-                >
-                  Download CV
-                </a>
-              </li>
-            </ul>
+            <Logo className="h-8 w-8 transition-transform duration-500 group-hover:rotate-90" />
+            <span className="text-[15px] font-semibold tracking-tight">{PROFILE.shortName}</span>
+          </a>
+
+          <DesktopLinks active={active} />
+
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <a href={cvHref} download={CV.downloadName} className="btn-primary hidden !px-4 !py-2.5 sm:inline-flex">
+              <LuDownload className="text-[15px]" aria-hidden="true" />
+              Resume
+            </a>
+            <button
+              type="button"
+              className="grid h-10 w-10 place-items-center rounded-full border hairline md:hidden"
+              onClick={() => setOpen((o) => !o)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+            >
+              {open ? <LuX className="text-lg" /> : <LuMenu className="text-lg" />}
+            </button>
           </div>
-        </div>
+        </nav>
+
+        <AnimatePresence>
+          {open && (
+            <m.div
+              id="mobile-menu"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden md:hidden"
+            >
+              <ul className="container-x flex flex-col pb-6 pt-2">
+                {NAV_LINKS.map((link, i) => (
+                  <m.li
+                    key={link.id}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * i }}
+                  >
+                    <a
+                      href={`#${link.id}`}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between border-b hairline py-4 text-2xl font-medium tracking-tight"
+                    >
+                      {link.title}
+                      <span className="font-mono text-xs text-muted">0{i + 1}</span>
+                    </a>
+                  </m.li>
+                ))}
+                <li className="pt-6">
+                  <a href={cvHref} download={CV.downloadName} className="btn-primary w-full">
+                    <LuDownload aria-hidden="true" />
+                    Download resume
+                  </a>
+                </li>
+              </ul>
+            </m.div>
+          )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </header>
   );
 };
 
