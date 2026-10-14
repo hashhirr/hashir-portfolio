@@ -48,7 +48,7 @@ export const NAV_LINKS = [
 ];
 
 export const SUMMARY =
-  "I'm a full stack engineer with production mobile and web platforms behind me. I own work end to end: architecture and feature delivery, cloud setup, app-store release, SEO, analytics and production debugging.";
+  "I'm a co-founder and full-stack engineer who owns products end to end: the technology decisions, the infrastructure they run on, and the releases that put them in users' hands.";
 
 export const MARQUEE_STACK = [
   { name: "React Native", icon: SiReact },
@@ -78,8 +78,8 @@ export const SKILL_GROUPS = [
   {
     title: "Mobile",
     icon: LuSmartphone,
-    blurb: "Native-feeling iOS & Android apps, down to custom native modules.",
-    items: ["React Native CLI & Expo", "TypeScript", "React Navigation", "Native modules", "Swift", "Kotlin", "Camera & media", "Maps", "Push notifications"],
+    blurb: "iOS & Android apps from the first screen to store release, with Swift and Kotlin where the platform needs it.",
+    items: ["React Native CLI & Expo", "TypeScript", "React Navigation", "Swift", "Kotlin", "Camera & media", "Maps", "Push notifications"],
   },
   {
     title: "Web",
@@ -155,10 +155,28 @@ export const PIPELINE = [
 
 export const EXPERIENCES = [
   {
+    company: "Flockbee",
+    companyUrl: COMPANY_LINKS.flockbee,
+    role: "Co-founder",
+    period: "Oct 2026 — Present",
+    current: true,
+    summary:
+      "Co-founder of Flockbee, a pre-seed group-buying marketplace where people who want the same thing join as a group and businesses compete to serve them. I own the technology: what we build on, how it runs, and what ships.",
+    sites: [{ label: "Website", name: "flockbee.com", url: COMPANY_LINKS.flockbee }],
+    points: [
+      "Chose the stack and set the architecture across the mobile app, backend and website.",
+      "Run infrastructure and DevOps: cloud environments, CI/CD on GitHub Actions and production deploys.",
+      "Own the repository, and review and merge every pull request.",
+      "Designed the complete app, including map-based discovery of nearby deals.",
+      "Built and shipped the company and investor website.",
+    ],
+    stack: ["React Native", "TypeScript", "Supabase", "PostgreSQL", "Mapbox", "Zustand", "Next.js", "GitHub Actions"],
+  },
+  {
     company: "Dejavu Adventures",
     companyUrl: COMPANY_LINKS.dejavuAdventures,
-    role: "Full Stack Web Developer",
-    period: "Jun 2026 — Present",
+    role: "Chief Technology Officer",
+    period: "Jun 2026 — Present · Part-time",
     current: true,
     // Shown in the "Currently" card on the About section.
     brands: [
@@ -166,13 +184,14 @@ export const EXPERIENCES = [
       { name: "Offroad Rental Hub", url: COMPANY_LINKS.offroadRentalHub },
     ],
     summary:
-      "I lead web for Dubai-based Dejavu Adventures and its subsidiary Offroad Rental Hub, an off-road rental and desert adventure booking platform.",
+      "I created and run the technology behind Dubai-based Dejavu Adventures and its subsidiary Offroad Rental Hub: the booking platforms, the admin system the business runs on, and the company's entire web presence.",
     sites: [
       { label: "Parent company", name: "dejavuadventures.com", url: COMPANY_LINKS.dejavuAdventures },
       { label: "Subsidiary", name: "offroadrentalhub.com", url: COMPANY_LINKS.offroadRentalHub },
     ],
     points: [
-      "Manage both companies' websites end to end. Every web-related operational decision across the group goes through me.",
+      "Created both booking sites and their shared admin from scratch, and own every technical decision across the group.",
+      "Built them to scale: a serverless Firebase backend and sites in 8 languages.",
       "Built localized commercial landing pages for dune buggy, quad bike, dirt bike and desert safari searches with canonical URLs, alternate locale paths, sitemap coverage and Open Graph metadata.",
       "Built booking, payment, refund, email and revalidation flows using Firestore, Firebase Storage, Cloud Functions, Stripe and Resend.",
       "Developed admin tools for vehicles, image uploads, bookings, customers, blogs, analytics, tracking settings, CSV export and content updates.",
@@ -184,21 +203,22 @@ export const EXPERIENCES = [
   {
     company: "Thunderbird Technologies",
     companyUrl: COMPANY_LINKS.thunderbird,
-    role: "Full Stack Engineer",
+    role: "Senior Software Engineer",
     period: "Oct 2023 — Present",
     current: true,
     summary:
-      "Lead full-stack development for Mistify, a production iOS/Android location-based social app.",
+      "Joined as one of the first engineers. I work directly with the founder, and together we built Mistify from scratch: a location-based social app, now live on iOS and Android.",
     sites: [
       { label: "iOS", name: "Mistify on the App Store", url: APP_LINKS.mistifyAppStore },
       { label: "Android", name: "Mistify on Google Play", url: APP_LINKS.mistifyPlayStore },
     ],
     points: [
-      "Built custom camera and media flows with native iOS/Android work, image/video compression, thumbnails, caching, WebP conversion and S3 delivery via pre-signed URLs.",
-      "Implemented Firebase auth with phone OTP, Google and Apple sign-in, NestJS token exchange, Hasura JWT claims and row-level authorization.",
-      "Delivered proximity-based discovery with Mapbox and PostGIS geospatial queries, location privacy, stories, posts, follows, reactions, comments, reports and notifications.",
+      "Built Mistify from architecture to launch, turning the founder's product decisions into shipped features across mobile, backend and cloud.",
+      "Designed the security model: Firebase phone OTP, Google and Apple sign-in, NestJS token exchange, and Hasura JWT claims with row-level permissions.",
+      "Designed the media pipeline: native camera on iOS and Android, image/video compression, thumbnails, caching, WebP conversion and direct-to-S3 uploads via pre-signed URLs.",
+      "Built proximity-based discovery with Mapbox and PostGIS geospatial queries, location privacy, stories, posts, follows, reactions, comments, reports and notifications.",
       "Built Firestore chat with presence, delivered/seen status, offline retry outbox, anonymous mode, block-state handling and FCM push routing.",
-      "Managed production releases on Google Play and the App Store: build variants, signing, store listings, CI/CD and app transfer workflows.",
+      "Run the AWS and Firebase infrastructure and every Google Play and App Store release: build variants, signing, store listings, CI/CD and app transfer.",
       "Built a Next.js admin & moderation dashboard with shadcn/ui, Apollo/Hasura, Firebase session handling and App Hosting deployment.",
     ],
     stack: ["React Native", "TypeScript", "NestJS", "Hasura", "PostgreSQL / PostGIS", "Firebase", "AWS", "Mapbox"],
@@ -244,7 +264,7 @@ export const FEATURED_PROJECTS = [
     kind: "Booking platform · Dubai",
     parent: { name: "Dejavu Adventures", url: COMPANY_LINKS.dejavuAdventures },
     description:
-      "Customer website and admin platform for desert adventures and off-road rentals, with localized SEO, Stripe checkout and full content management. I run this site and the parent company's site, and own the web decisions for both.",
+      "Customer website and admin platform for desert adventures and off-road rentals, with localized SEO, Stripe checkout and full content management. I created this site and the parent company's site, and run the technology behind both as CTO.",
     highlights: [
       "Localized SEO landing pages per activity",
       "Stripe payments, refunds & Resend emails",

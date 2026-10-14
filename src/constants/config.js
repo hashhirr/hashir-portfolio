@@ -14,7 +14,7 @@ export const PROFILE = {
   role: "Full Stack Engineer",
   specialty: "React Native Developer",
   location: "Pakistan · Working remotely",
-  availability: "Open to new opportunities",
+  availability: "Open to select projects",
   // Used to calculate the "years of experience" counter on the site.
   careerStart: "2023-10-01",
 };
@@ -38,6 +38,7 @@ export const CV = {
 };
 
 export const COMPANY_LINKS = {
+  flockbee: "https://flockbee.com/", // co-founder
   dejavuAdventures: "https://dejavuadventures.com/", // parent company
   offroadRentalHub: "https://offroadrentalhub.com/", // subsidiary
   // Leave empty to show the company name without a link.

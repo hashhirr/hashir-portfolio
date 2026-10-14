@@ -125,25 +125,25 @@ const StatusChip = () => (
       <span className="relative h-2 w-2 rounded-full bg-accent" />
     </span>
     <span className="truncate">
-      Leading web at{" "}
+      Co-founder at{" "}
       <a
-        href={COMPANY_LINKS.dejavuAdventures}
+        href={COMPANY_LINKS.flockbee}
         target="_blank"
         rel="noopener noreferrer"
         className="font-medium text-fg underline-offset-4 hover:text-accent hover:underline"
       >
-        Dejavu Adventures
+        Flockbee
       </a>
       <span className="hidden xs:inline">
         {" "}
-        &amp;{" "}
+        · CTO at{" "}
         <a
-          href={COMPANY_LINKS.offroadRentalHub}
+          href={COMPANY_LINKS.dejavuAdventures}
           target="_blank"
           rel="noopener noreferrer"
           className="font-medium text-fg underline-offset-4 hover:text-accent hover:underline"
         >
-          Offroad Rental Hub
+          Dejavu Adventures
         </a>
       </span>
     </span>
@@ -174,9 +174,9 @@ const Hero = () => {
             className="mt-6 max-w-xl animate-fade-up text-pretty text-base leading-relaxed text-muted sm:text-lg"
             style={delay(0.55)}
           >
-            I'm <span className="font-medium text-fg">{PROFILE.name}</span>. For {yearsOfExperience()}+ years I've built
-            production platforms in React Native and Next.js: native camera modules, PostGIS queries, Stripe checkouts,
-            cloud setup and app-store releases.
+            I'm <span className="font-medium text-fg">{PROFILE.name}</span>, co-founder of Flockbee. For{" "}
+            {yearsOfExperience()}+ years I've built and run production platforms in React Native and Next.js: system
+            architecture, cloud infrastructure, CI/CD, Stripe checkouts and app-store releases.
           </p>
 
           <div className="mt-9 flex animate-fade-up flex-wrap items-center gap-3" style={delay(0.7)}>

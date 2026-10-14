@@ -194,7 +194,7 @@ const Contact = () => (
         eyebrow="Contact"
         title="Have a product to ship?"
         accent="Let's talk."
-        description={`${PROFILE.availability}: full-time roles, contracts and freelance builds across mobile, web and backend.`}
+        description={`${PROFILE.availability}: contracts and freelance builds across mobile, web and backend.`}
       />
 
       <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
